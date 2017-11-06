@@ -15,7 +15,13 @@ app.get('/',(req,res)=>{     //see 1.
 
 app.get('/about',(req,res)=>{
   // res.send('This is about page'); //8
-  res.render('about-template.hbs'); //8
+  // res.render('about-template.hbs'); //8
+
+  //9
+  res.render('about-template.hbs',{
+    title: 'About',
+    year: new Date().getFullYear()
+  });
 });
 
 app.get('/bad',(req,res)=>{
@@ -42,3 +48,5 @@ app.listen(3000); //2
 //6 Now we are going to work with the templates - like buildmlearn, we will have html template and we can fill data in it dynamically
 //7 engine to dynamically fill data - see hbs website. Now we have created hbs template in views for about page
 //8 we are now telling that on http://localhost:3000/about, render the hbs template - about-template
+//9 Now we will make hbs dynamic => we pass a object containing key value pairs in which key is put inside hbs template file and values are replaced into those keys dynamically by the server
+//See in hbs template file => to place key, we have inserted like {{}}
