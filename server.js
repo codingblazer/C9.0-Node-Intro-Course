@@ -1,7 +1,8 @@
 const express = require('express');
+const hbs = require('hbs'); //6
 
 var app = express();   //express() function returns a handler using which we will do everythin
-
+app.set('view engine','hbs'); //7
 app.use(express.static(__dirname+'/public'));//see 5
 app.get('/',(req,res)=>{     //see 1.
   // res.send('Hello Sachin Aggarwal');
@@ -13,7 +14,8 @@ app.get('/',(req,res)=>{     //see 1.
 });
 
 app.get('/about',(req,res)=>{
-  res.send('This is about page');
+  // res.send('This is about page'); //8
+  res.render('about-template.hbs'); //8
 });
 
 app.get('/bad',(req,res)=>{
@@ -36,3 +38,7 @@ app.listen(3000); //2
 //static is functions for inbuilt middleware
 //__dirname is path of your server directory - actually we want to give the path of complete folder which contain all these html files
 //check http://localhost:3000/help.html
+
+//6 Now we are going to work with the templates - like buildmlearn, we will have html template and we can fill data in it dynamically
+//7 engine to dynamically fill data - see hbs website. Now we have created hbs template in views for about page
+//8 we are now telling that on http://localhost:3000/about, render the hbs template - about-template
