@@ -1,16 +1,24 @@
 const express = require('express');
 const hbs = require('hbs'); //6
 
+hbs.registerPartials(__dirname+'/views/partials'); //11
 var app = express();   //express() function returns a handler using which we will do everythin
 app.set('view engine','hbs'); //7
+// app.set('views', __dirname + '/mYviews'); //see 10
 app.use(express.static(__dirname+'/public'));//see 5
 app.get('/',(req,res)=>{     //see 1.
   // res.send('Hello Sachin Aggarwal');
   // res.send('<b>Hello Sachin Aggarwal</b>'); //see 3
-  res.send({
-    id: 'sachin',
-    cities : ['delhi','jaipur']
-  });  //see 4
+  // res.send({
+  //   id: 'sachin',
+  //   cities : ['delhi','jaipur']
+  // });  //see 4
+
+  res.render('home.hbs',{
+    title : 'Home',
+    year : new Date().getFullYear(),
+    name : 'Sachin'
+  })
 });
 
 app.get('/about',(req,res)=>{
@@ -50,3 +58,5 @@ app.listen(3000); //2
 //8 we are now telling that on http://localhost:3000/about, render the hbs template - about-template
 //9 Now we will make hbs dynamic => we pass a object containing key value pairs in which key is put inside hbs template file and values are replaced into those keys dynamically by the server
 //See in hbs template file => to place key, we have inserted like {{}}
+//10 - if you name your hbs directory other than "views" => pages won't open => must name your directory "views" or use .set function to change the path as done in 10
+//11 - see that we have created partials directory and containing files header and footer => we can take out any common code and create partial for it for reuse => see home.hbs point 1.
