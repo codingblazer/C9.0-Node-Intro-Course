@@ -12,11 +12,14 @@ hbs.registerHelper('screamIt',(text)=>{ //13
 var app = express();   //express() function returns a handler using which we will do everythin
 app.set('view engine','hbs'); //7
 // app.set('views', __dirname + '/mYviews'); //see 10
+
+// app.use((req,res,next)=>{//17
+// res.render('maintain.hbs');
+// });
+
 app.use(express.static(__dirname+'/public'));//see 5
 
-app.use((req,res,next)=>{//17
-res.render('maintain.hbs');
-});
+
 app.use((req,res,next)=>{ //see 14, 15
 //see 16
 var now = new Date().toString();
@@ -92,4 +95,4 @@ app.listen(3000); //2
 //16 In this middleware we are saving all the url requests that are coming to us inside a file logRequests.log
 //17 Now let say our website is going under maintainance and we want no url of our site to open => insert a middleware at the top which will never call next() => No hndler or middle is registered => No url is valid (create a page to be shown in maintainence i.e maintainence.hbs)
 //=> insid middle we just callled this page and didn't called next => stuck at this page
-//BUT help page inside public is still working => try /help => this is because we registers inbuilt static middleware for public directory before this => change the order
+//BUT help page inside public is still working => try http://localhost:3000/help.html => this is because we registers inbuilt static middleware for public directory before this => change the order
