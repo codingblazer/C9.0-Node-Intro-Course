@@ -2,6 +2,12 @@ const express = require('express');
 const hbs = require('hbs'); //6
 
 hbs.registerPartials(__dirname+'/views/partials'); //11
+hbs.registerHelper('getCurrentYear',()=>{ //12
+  return new Date().getFullYear();
+});
+hbs.registerHelper('screamIt',(text)=>{ //13
+  return text.toUpperCase();
+});
 var app = express();   //express() function returns a handler using which we will do everythin
 app.set('view engine','hbs'); //7
 // app.set('views', __dirname + '/mYviews'); //see 10
@@ -16,7 +22,6 @@ app.get('/',(req,res)=>{     //see 1.
 
   res.render('home.hbs',{
     title : 'Home',
-    year : new Date().getFullYear(),
     name : 'Sachin'
   })
 });
@@ -27,8 +32,7 @@ app.get('/about',(req,res)=>{
 
   //9
   res.render('about-template.hbs',{
-    title: 'About',
-    year: new Date().getFullYear()
+    title: 'About'
   });
 });
 
@@ -60,3 +64,6 @@ app.listen(3000); //2
 //See in hbs template file => to place key, we have inserted like {{}}
 //10 - if you name your hbs directory other than "views" => pages won't open => must name your directory "views" or use .set function to change the path as done in 10
 //11 - see that we have created partials directory and containing files header and footer => we can take out any common code and create partial for it for reuse => see home.hbs point 1.
+//12 - we have removed the the common date data as both home and about needed it => we can use hbs helpers to send data - kind of function - just register the funciton like this and what it will return when called
+//see footer.hbs point 1 now
+//13 - creating another helper => this time it takes argument as well => see its use in home.hbs

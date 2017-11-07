@@ -7,9 +7,10 @@
 <body>
   {{> header}}
   <p>This is some text</p>
-  <p> Welcome {{name}} </p>
+  <p> {{screamIt 'Welcome'}} {{name}} </p>
 </body>
 {{> footer}}
 </html>
 
  <!-- 1 Here we have 2 partials - {{> header}} && {{> footer}} => you can do it for any part of code header and footer are the partial files name -->
+<!-- 2. using helper with argument in line Welcome i.e line 10  => we pass arguments into call like shown i.e. write space and then argument to be passed -->
