@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs'); //6
 const fs = require('fs');
+const port = process.env.PORT || 3000; //18
 
 hbs.registerPartials(__dirname+'/views/partials'); //11
 hbs.registerHelper('getCurrentYear',()=>{ //12
@@ -57,7 +58,7 @@ app.get('/bad',(req,res)=>{
     error : 'This is bad request'
   });
 });
-app.listen(3000); //2
+app.listen(port); //2
 
 
 // 0.) It is important to think from server perspective. Here you are the server and client is web browser or app
@@ -96,3 +97,5 @@ app.listen(3000); //2
 //17 Now let say our website is going under maintainance and we want no url of our site to open => insert a middleware at the top which will never call next() => No hndler or middle is registered => No url is valid (create a page to be shown in maintainence i.e maintainence.hbs)
 //=> insid middle we just callled this page and didn't called next => stuck at this page
 //BUT help page inside public is still working => try http://localhost:3000/help.html => this is because we registers inbuilt static middleware for public directory before this => change the order
+//18 Here we are setting up the heroku server and we can't user local host port => it is set by heoku => pass this port variable i.e. env variable which value heroku will chanhe
+//next step is to add script for start in package.json
