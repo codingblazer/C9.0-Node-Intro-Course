@@ -99,3 +99,10 @@ app.listen(port); //2
 //BUT help page inside public is still working => try http://localhost:3000/help.html => this is because we registers inbuilt static middleware for public directory before this => change the order
 //18 Here we are setting up the heroku server and we can't user local host port => it is set by heoku => pass this port variable i.e. env variable which value heroku will chanhe
 //next step is to add script for start in package.json
+//To RUN heroku
+//heroku create - will create node app on heroku (empty like repo on github)
+//git push heroku master
+
+//VIMP - heroku is like github => before pushing to githbu, we must do git add files and then commit and then push => similarly in herolku, first do git add and then push
+// - Don't add any comments in package.json as it creates problem in heroku
+//https://pacific-plateau-17935.herokuapp.com/
